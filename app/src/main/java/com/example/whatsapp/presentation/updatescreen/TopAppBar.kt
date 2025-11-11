@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -29,11 +31,11 @@ import androidx.compose.ui.unit.sp
 @Composable
 @Preview(showBackground = true, showSystemUi = true)
 fun TopAppBar() {
-    var isSearching by remember { mutableStateOf(true) }
+    var isSearching by remember { mutableStateOf(false) }
     var search by remember { mutableStateOf("") }
     Box(modifier = Modifier.fillMaxWidth()) {
         Column {
-            Row {
+            Row() {
                 if (isSearching) {
                     TextField(
                         value = search,
@@ -57,15 +59,41 @@ fun TopAppBar() {
                 }
                 Spacer(modifier = Modifier.weight(1f))
                 if (isSearching) {
-                    IconButton(onClick = { isSearching = false }) {
+                    IconButton(onClick = { isSearching = false
+                        search=""}) {
                         Icon(
                             painter = painterResource(R.drawable.cross),
                             contentDescription = null,
                             modifier = Modifier.padding(15.dp)
                         )
                     }
+                } else {
+                    IconButton(onClick = {}) {
+                        Icon(
+                            painterResource(R.drawable.camera),
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                    IconButton(onClick = {
+                        isSearching = true
+                    }) {
+                        Icon(
+                            painterResource(R.drawable.search),
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                    IconButton(onClick = {}) {
+                        Icon(
+                            painterResource(R.drawable.more),
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
                 }
             }
+            HorizontalDivider()
         }
     }
 }
