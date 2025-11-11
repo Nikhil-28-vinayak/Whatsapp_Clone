@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,6 +35,7 @@ import androidx.compose.ui.unit.sp
 fun TopAppBar() {
     var isSearching by remember { mutableStateOf(false) }
     var search by remember { mutableStateOf("") }
+    var showMenu by remember { mutableStateOf(false) }
     Box(modifier = Modifier.fillMaxWidth()) {
         Column {
             Row() {
@@ -84,12 +87,17 @@ fun TopAppBar() {
                             modifier = Modifier.size(24.dp)
                         )
                     }
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = {showMenu=true}) {
                         Icon(
                             painterResource(R.drawable.more),
                             contentDescription = null,
                             modifier = Modifier.size(24.dp)
                         )
+                        DropdownMenu(expanded = showMenu, onDismissRequest = {showMenu=false}) {
+                            DropdownMenuItem(text = {Text("Status Privacy")}, onClick = {showMenu=false})
+                            DropdownMenuItem(text = {Text("Crate channel")}, onClick = {showMenu=false})
+                            DropdownMenuItem(text = {Text("Setting")}, onClick = {showMenu=false})
+                        }
                     }
                 }
             }
