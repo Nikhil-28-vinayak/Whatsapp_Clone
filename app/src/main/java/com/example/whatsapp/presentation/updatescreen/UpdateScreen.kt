@@ -2,13 +2,16 @@ package com.example.whatsapp.presentation.updatescreen
 
 import androidx.compose.foundation.gestures.ScrollableState
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -51,6 +54,28 @@ fun UpdateScreen() {
         )
 
     )
+    var samplechannel=listOf<Channels>(
+        Channels(
+            image = R.drawable.neat_roots,
+            name = "Neets Roots",
+            description = "Latest news in tech"
+        ),
+        Channels(
+            image = R.drawable.img,
+            name = "Food Lover",
+            description = "Discover new recipes"
+        ),
+        Channels(
+            image = R.drawable.meta,
+            name = "Meta",
+            description = "Explore the world"
+        ),
+        Channels(
+            image = R.drawable.whatsapp_icon,
+            name = "Whatsapp",
+            description = "Connect with the world"
+        ),
+    )
     Scaffold(floatingActionButton = {
         FloatingActionButton(
             onClick = {},
@@ -83,7 +108,25 @@ fun UpdateScreen() {
                 StatusItem(statusdata = it)
 
             }
-
+            Spacer(modifier = Modifier.height(16.dp))
+            HorizontalDivider(color = Color.Gray)
+            Text(
+                "Channel",
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+                fontSize = 20.sp,
+                modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                Text("Stay Updated on topics that matter to you. Find channels to follow below")
+                Spacer(modifier = Modifier.height(32.dp))
+                Text("Find channels to follow")
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            samplechannel.forEach {
+                ChannelItemDesign(channels = it)
+            }
         }
     }
 }
