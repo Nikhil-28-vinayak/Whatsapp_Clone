@@ -22,11 +22,10 @@ import androidx.compose.ui.unit.sp
 import com.example.whatsapp.R
 
 @Composable
-@Preview(showBackground = true, showSystemUi = true)
-fun FavouriteItem() {
+fun FavouriteItem(favouriteContact: FavouriteContact) {
     Column(modifier = Modifier.padding(start = 4.dp, top = 4.dp, end = 12.dp ), horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
-            painterResource(R.drawable.salman_khan),
+            painterResource(favouriteContact.image),
             contentDescription = null,
             modifier = Modifier.size(60.dp).clip(
                 CircleShape
@@ -34,6 +33,6 @@ fun FavouriteItem() {
             contentScale = ContentScale.Crop
             )
         Spacer(modifier = Modifier.height(2.dp))
-        Text("Salman Khan", fontWeight = FontWeight.Medium, color = Color.Black, fontSize = 14.sp )
+        Text(favouriteContact.name, fontWeight = FontWeight.Medium, color = Color.Black, fontSize = 14.sp )
     }
 }
