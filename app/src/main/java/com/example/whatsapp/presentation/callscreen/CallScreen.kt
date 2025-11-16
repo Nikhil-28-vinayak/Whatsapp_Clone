@@ -17,6 +17,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -43,47 +44,47 @@ import com.example.whatsapp.presentation.bottomnavigation.BottomNavigation
 @Composable
 @Preview(showBackground = true, showSystemUi = true)
 fun CallScreen() {
-    var callList=listOf<Call>(
+    var callList = listOf<Call>(
         Call(
             image = R.drawable.akshay_kumar,
             name = "Akshay Kumar",
-            time =  "Today, 5:00 PM",
+            time = "Today, 5:00 PM",
             isMissed = false
         ),
         Call(
             image = R.drawable.tripti_dimri,
             name = "Tripti Dimri",
-            time =  "Today, 10:00 AM",
+            time = "Today, 10:00 AM",
             isMissed = true
         ),
         Call(
             image = R.drawable.kartik_aaryan,
             name = "Kartik Aryan",
-            time =  "Yesterday, 3:42 PM",
+            time = "Yesterday, 3:42 PM",
             isMissed = false
         ),
         Call(
             image = R.drawable.hrithik_roshan,
             name = "Hritik Roshan",
-            time =  "Yesterday, 3:30 PM",
+            time = "Yesterday, 3:30 PM",
             isMissed = true
         ),
         Call(
             image = R.drawable.sharadha_kapoor,
             name = "Sharadha Kapoor",
-            time =  "Yesterday, 11:00 AM",
+            time = "Yesterday, 11:00 AM",
             isMissed = false
         ),
         Call(
             image = R.drawable.ajay_devgn,
             name = "Ajay Devgan",
-            time =  "Tuesday, 7:03 PM",
+            time = "Tuesday, 7:03 PM",
             isMissed = false
         ),
         Call(
             image = R.drawable.tripti_dimri,
             name = "Tripti Dimri",
-            time =  "Tuesday, 4:13 PM",
+            time = "Tuesday, 4:13 PM",
             isMissed = false
         ),
     )
@@ -166,6 +167,15 @@ fun CallScreen() {
         }
     }, bottomBar = {
         BottomNavigation()
+    }, floatingActionButton = {
+        FloatingActionButton(
+            onClick = {},
+            containerColor = colorResource(R.color.light_green),
+            modifier = Modifier.size(65.dp),
+            contentColor = Color.White
+        ) {
+            Icon(painterResource(R.drawable.add_call),contentDescription = null)
+        }
     }) {
         Column(modifier = Modifier.padding(it)) {
             Spacer(modifier = Modifier.height(16.dp))
@@ -192,8 +202,8 @@ fun CallScreen() {
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
             )
             LazyColumn {
-                items(callList) {data ->
-                     CallItemDesign(call = data)
+                items(callList) { data ->
+                    CallItemDesign(call = data)
                 }
             }
         }
