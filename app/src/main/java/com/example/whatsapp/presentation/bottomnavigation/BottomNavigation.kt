@@ -25,7 +25,7 @@ import com.example.whatsapp.R
 @Composable
 @Preview(showBackground = true, showSystemUi = true)
 fun BottomNavigation() {
-    BottomAppBar(tonalElevation = 0.5.dp, containerColor = MaterialTheme.colorScheme.surface) {
+    BottomAppBar(tonalElevation = 0.5.dp, containerColor = Color.Transparent) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Column(
                 modifier = Modifier.padding(horizontal = 16.dp),

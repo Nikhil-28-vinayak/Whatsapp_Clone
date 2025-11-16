@@ -33,6 +33,6 @@ fun FavouriteItem(favouriteContact: FavouriteContact) {
             contentScale = ContentScale.Crop
             )
         Spacer(modifier = Modifier.height(2.dp))
-        Text(favouriteContact.name, fontWeight = FontWeight.Medium, color = Color.Black, fontSize = 14.sp )
+        Text(favouriteContact.name, fontWeight = FontWeight.Medium, fontSize = 14.sp )
     }
 }

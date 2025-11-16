@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
@@ -36,10 +38,55 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.whatsapp.R
+import com.example.whatsapp.presentation.bottomnavigation.BottomNavigation
 
 @Composable
 @Preview(showBackground = true, showSystemUi = true)
 fun CallScreen() {
+    var callList=listOf<Call>(
+        Call(
+            image = R.drawable.akshay_kumar,
+            name = "Akshay Kumar",
+            time =  "Today, 5:00 PM",
+            isMissed = false
+        ),
+        Call(
+            image = R.drawable.tripti_dimri,
+            name = "Tripti Dimri",
+            time =  "Today, 10:00 AM",
+            isMissed = true
+        ),
+        Call(
+            image = R.drawable.kartik_aaryan,
+            name = "Kartik Aryan",
+            time =  "Yesterday, 3:42 PM",
+            isMissed = false
+        ),
+        Call(
+            image = R.drawable.hrithik_roshan,
+            name = "Hritik Roshan",
+            time =  "Yesterday, 3:30 PM",
+            isMissed = true
+        ),
+        Call(
+            image = R.drawable.sharadha_kapoor,
+            name = "Sharadha Kapoor",
+            time =  "Yesterday, 11:00 AM",
+            isMissed = false
+        ),
+        Call(
+            image = R.drawable.ajay_devgn,
+            name = "Ajay Devgan",
+            time =  "Tuesday, 7:03 PM",
+            isMissed = false
+        ),
+        Call(
+            image = R.drawable.tripti_dimri,
+            name = "Tripti Dimri",
+            time =  "Tuesday, 4:13 PM",
+            isMissed = false
+        ),
+    )
     var isSearching by remember { mutableStateOf(false) }
     var search by remember { mutableStateOf("") }
     var showMenu by remember { mutableStateOf(false) }
@@ -69,7 +116,6 @@ fun CallScreen() {
                         Text(
                             "Calls",
                             fontSize = 28.sp,
-                            color = Color.Black,
                             modifier = Modifier.padding(start = 12.dp, top = 4.dp)
                         )
                     }
@@ -118,6 +164,8 @@ fun CallScreen() {
                 HorizontalDivider()
             }
         }
+    }, bottomBar = {
+        BottomNavigation()
     }) {
         Column(modifier = Modifier.padding(it)) {
             Spacer(modifier = Modifier.height(16.dp))
@@ -136,7 +184,18 @@ fun CallScreen() {
                     fontWeight = FontWeight.Bold
                 )
             }
-            Text("Recent Calls", fontSize = 20.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp))
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                "Recent Calls",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+            )
+            LazyColumn {
+                items(callList) {data ->
+                     CallItemDesign(call = data)
+                }
+            }
         }
     }
 }
