@@ -22,7 +22,9 @@ import com.example.whatsapp.presentation.updatescreen.UpdateScreen
 import com.example.whatsapp.presentation.userregistrationscreen.UserRegistrationScreen
 import com.example.whatsapp.presentation.welcomescreen.WelcomeScreen
 import com.example.whatsapp.ui.theme.WhatsappTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

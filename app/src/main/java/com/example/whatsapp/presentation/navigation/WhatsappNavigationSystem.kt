@@ -26,7 +26,7 @@ fun WhatsappNavigationSystem(){
         }
 
         composable<Routes.RegistrationScreen> {
-            UserRegistrationScreen()
+            UserRegistrationScreen(navController)
         }
 
         composable<Routes.HomeScreen> {

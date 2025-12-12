@@ -3,6 +3,7 @@ package com.example.whatsapp.presentation.userregistrationscreen
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -32,6 +33,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,11 +48,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.whatsapp.R
+import com.example.whatsapp.presentation.navigation.Routes
 import com.example.whatsapp.presentation.viewmodal.AuthState
 import com.example.whatsapp.presentation.viewmodal.PhoneAuthViewModal
+
 
 
 @SuppressLint("ContextCastToActivity")
@@ -246,9 +250,36 @@ fun UserRegistrationScreen(
                         Text("verify OTP")
                     }
 
-                    if( authState is AuthState.Loading){
-                        Spacer(modifier = )
+                    if (authState is AuthState.Loading) {
+                        Spacer(modifier = Modifier.height(16.dp))
+                        CircularProgressIndicator()
                     }
+                }
+            }
+
+            is AuthState.Success -> {
+                LaunchedEffect(key1 = Unit) {
+                    Log.d("UserRegistrationScreen", "AuthState is Success, navigating now.")
+
+                    // CORRECT NAVIGATION for type-safe routes:
+                    // Pass the serializable data object itself.
+                    navController.navigate(Routes.UserProfileScreen) {
+
+                        // CORRECT popUpTo for type-safe routes:
+                        // Pass the object for the screen you are leaving.
+                        // Note: Your Routes class calls it 'RegistrationScreen'.
+                        popUpTo(Routes.RegistrationScreen) {
+                            inclusive = true
+                        }
+                    }
+                }
+
+            }
+
+            is AuthState.Error->{
+                val errorMessage = (authState as AuthState.Error).message
+                LaunchedEffect(errorMessage) {
+                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
                 }
             }
         }
