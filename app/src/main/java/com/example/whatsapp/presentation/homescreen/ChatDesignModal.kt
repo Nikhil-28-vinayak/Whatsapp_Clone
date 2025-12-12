@@ -1,5 +1,9 @@
 package com.example.whatsapp.presentation.homescreen
 
-class ChatDesignModal {
+data class ChatDesignModal(
+    val image:Int,
+    val name:String,
+    val time:String,
+    val message: String
+)
 
-}
